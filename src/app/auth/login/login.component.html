@@ -1,0 +1,21 @@
+<form class="form-signin" (ngSubmit)="onLogin(f)" #f="ngForm">
+  <div class="text-center mb-4">
+    <h2>Login</h2>
+    <p>Your data is never saved!</p>
+  </div>
+  <div class="form-group">
+    <label for="user">User</label>
+    <input type="email" class="form-control" id="user" name="user" ngModel />
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input
+      type="password"
+      class="form-control"
+      id="password"
+      name="password"
+      ngModel
+    />
+  </div>
+  <button class="btn btn-primary" type="submit">Log In</button>
+</form>

@@ -1,0 +1,11 @@
+<a
+  style="cursor: pointer;"
+  class="list-group-item clearfix mb-1"
+  routerLinkActive="active"
+  [routerLink]="[mower.id]"
+>
+  {{ mower.name }}
+  <span class="badge badge-primary badge-pill"
+    >Bat: {{ mower.status.batteryPercent }} %</span
+  >
+</a>

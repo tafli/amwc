@@ -1,0 +1,87 @@
+{
+  "token": {
+    "data": {
+      "id": "57229871-fd83-4996-a6d1-4fc601a4c56b",
+      "type": "token",
+      "attributes": {
+        "expires_in": 863999,
+        "refresh_token": "35923402-4cbf-4c61-b408-d931991b436a",
+        "provider": "husqvarna",
+        "user_id": "990ca532-7218-4261-bfad-6eba872c3e6e",
+        "scope": "iam:read iam:write"
+      }
+    }
+  },
+  "mowers": [
+    {
+      "id": "181607229-181343262",
+      "name": "Automower",
+      "model": "L",
+      "valueFound": true,
+      "status": {
+        "batteryPercent": 52,
+        "connected": true,
+        "lastErrorCode": 0,
+        "lastErrorCodeTimestamp": 0,
+        "mowerStatus": "OK_CHARGING",
+        "nextStartSource": "MOWER_CHARGING",
+        "nextStartTimestamp": 1553355226,
+        "operatingMode": "AUTO",
+        "storedTimestamp": 1553348846783,
+        "showAsDisconnected": false,
+        "valueFound": true
+      }
+    },
+    {
+      "id": "181607229-181343263",
+      "name": "Schöfli",
+      "model": "L",
+      "valueFound": true,
+      "status": {
+        "batteryPercent": 42,
+        "connected": true,
+        "lastErrorCode": 0,
+        "lastErrorCodeTimestamp": 0,
+        "mowerStatus": "PARKED_TIMER",
+        "nextStartSource": "WEEK_TIMER",
+        "nextStartTimestamp": 1554710400,
+        "operatingMode": "AUTO",
+        "storedTimestamp": 1554660086012,
+        "showAsDisconnected": false,
+        "valueFound": true
+      }
+    }
+  ],
+  "status": {
+      "mowerId": "181607229-181343262",
+      "batteryPercent": 52,
+      "connected": true,
+      "lastErrorCode": 0,
+      "lastErrorCodeTimestamp": 0,
+      "mowerStatus": "OK_CHARGING",
+      "nextStartSource": "MOWER_CHARGING",
+      "nextStartTimestamp": 1553355226,
+      "operatingMode": "AUTO",
+      "storedTimestamp": 1553348846783,
+      "showAsDisconnected": false,
+      "valueFound": true,
+      "cachedSettingsUUID": "659c2073-b3ef-4a88-b034-8610e70359ae",
+      "lastLocations": [
+        {
+          "latitude": 47.266155,
+          "longitude": 8.198391666666666,
+          "gpsStatus": "USING_GPS_MAP"
+        },
+        {
+          "latitude": 47.26615833333334,
+          "longitude": 8.198388333333334,
+          "gpsStatus": "USING_GPS_MAP"
+        },
+        {
+          "latitude": 47.266165,
+          "longitude": 8.198383333333334,
+          "gpsStatus": "USING_GPS_MAP"
+        }
+      ]
+    }
+}

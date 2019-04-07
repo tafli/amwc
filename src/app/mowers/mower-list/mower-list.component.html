@@ -1,0 +1,14 @@
+<div class="row p-3">
+  <div class="col-md-5">
+    <ul class="list-group">
+      <app-mower-item
+        *ngFor="let mowerItem of mowers; let i = index"
+        [mower]="mowerItem"
+        [index]="i"
+      ></app-mower-item>
+    </ul>
+  </div>
+  <div class="col-md-7">
+    <router-outlet></router-outlet>
+  </div>
+</div>
