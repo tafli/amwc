@@ -3,7 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 
 import { MowerStatus } from '../mower.model';
 import { MowerService } from '../mower.service';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-mower-detail',
@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./mower-detail.component.css']
 })
 export class MowerDetailComponent implements OnInit {
-  mowerStatus: MowerStatus;
+  mowerStatus: BehaviorSubject<MowerStatus>;
   id: string;
 
   constructor(
@@ -20,15 +20,12 @@ export class MowerDetailComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.mowerStatus = this.mowerService.mowerStatus;
     this.route.params.subscribe((params: Params) => {
       this.id = params.id;
       console.log('ID: ', this.id);
 
-      this.mowerService
-        .getMowerStatus(this.id)
-        .subscribe((status: MowerStatus) => {
-          this.mowerStatus = status;
-        });
+      this.mowerService.loadMowerStatus(this.id);
     });
   }
 }

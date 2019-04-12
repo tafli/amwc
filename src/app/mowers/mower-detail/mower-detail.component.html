@@ -1,12 +1,23 @@
-<table class="table">
-  <tbody>
-    <tr>
-      <td>Battery:</td>
-      <td>{{ mowerStatus?.batteryPercent }} %</td>
-    </tr>
-    <tr>
-        <td>Status:</td>
-        <td>{{ mowerStatus?.mowerStatus }}</td>
-      </tr>
-  </tbody>
-</table>
+<div class="row">
+  <div class="col-sm-4">
+    <table class="table table-striped">
+        <tbody>
+          <tr>
+            <th>Battery:</th>
+            <td>{{ (mowerStatus | async).batteryPercent }} %</td>
+          </tr>
+          <tr>
+            <th>Status:</th>
+            <td>{{ (mowerStatus | async).mowerStatus }}</td>
+          </tr>
+          <tr>
+              <th>Mode:</th>
+              <td>{{ (mowerStatus | async).operationMode }}</td>
+            </tr>
+        </tbody>
+      </table>
+  </div>
+  <div class="col-sm">
+    <app-mower-map [locations]="(mowerStatus | async).lastLocations"></app-mower-map>
+  </div>
+</div>

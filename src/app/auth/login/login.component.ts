@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   onLogin(form: NgForm) {
     const user = form.value.user;
     const pwd = form.value.password;
-    this.authServer.doLogin(user, pwd);
+    const remember = form.value.remember || false;
+    this.authServer.doLogin(user, pwd, remember);
   }
 }

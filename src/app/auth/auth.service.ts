@@ -1,6 +1,6 @@
 import { environment } from './../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { LoginModel } from './login.model';
@@ -12,16 +12,20 @@ import { Token } from './token.model';
 export class AuthService {
   token: Token;
 
-  constructor(private router: Router, private httpClient: HttpClient) {}
+  constructor(private router: Router, private httpClient: HttpClient) {
+    this.token = this.readLogin();
+    console.log('Login from localStorage:', this.token);
+  }
 
   isAuthenticated() {
     return this.token != null;
   }
 
-  doLogin(user: string, password: string) {
+  doLogin(user: string, password: string, remember: boolean) {
     const loginModel = new LoginModel(user, password);
 
     console.log(loginModel);
+    console.log('Remember:', remember);
 
     this.httpClient
       .post<Token>(environment.IAM_URL + '/token', loginModel, {
@@ -32,8 +36,15 @@ export class AuthService {
           this.router.navigate(['/mowers']);
           console.log(token);
           this.token = token;
+
+          if (remember) {
+            this.rememberLogin();
+          }
         },
-        error => console.log(error)
+        error => {
+          this.forgetLogin();
+          console.log(error);
+        }
       );
   }
 
@@ -47,11 +58,24 @@ export class AuthService {
       .subscribe((response: Response) => {
         console.log(response);
       });
-    this.router.navigate(['/']);
+    this.router.navigate(['/login']);
     this.token = null;
+    this.forgetLogin();
   }
 
   getToken() {
     return this.token;
+  }
+
+  private readLogin() {
+    return JSON.parse(localStorage.getItem('authToken'));
+  }
+
+  private rememberLogin() {
+    localStorage.setItem('authToken', JSON.stringify(this.token));
+  }
+
+  private forgetLogin() {
+    localStorage.removeItem('authToken');
   }
 }

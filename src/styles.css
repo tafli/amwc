@@ -1,2 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
-@import '~bootstrap/dist/css/bootstrap.css';
+/*@import '~bootstrap/dist/css/bootstrap.min.css';*/
+/*@import '~leaflet/dist/leaflet.css';*/
+
+html,
+body {
+  height: 100%;
+  background-image: url('~/assets/images/background2.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: 'Numans', sans-serif;
+}
+
+.list-group-item.active {
+  background-color: #40c222;
+  border: 1px solid #3c7845;
+}
