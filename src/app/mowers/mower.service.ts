@@ -23,11 +23,13 @@ export class MowerService implements OnInit, OnDestroy {
   ) {
     this.interval = interval(5000)
       .pipe(
-        tap(() => console.log('Loading Mowers...')),
         startWith(0),
         switchMap(() => this.loadMowers())
       )
-      .subscribe((mowers: Mower[]) => this._mowers.next(mowers));
+      .subscribe((mowers: Mower[]) => {
+        this._mowers.next(mowers);
+        mowers.forEach(mower => this.loadMowerStatus(mower.id));
+      });
   }
 
   ngOnInit() {
