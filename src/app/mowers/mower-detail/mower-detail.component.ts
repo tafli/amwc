@@ -8,7 +8,7 @@ import { MowerService } from '../mower.service';
   styleUrls: ['./mower-detail.component.css']
 })
 export class MowerDetailComponent {
-  mowerStatus = this.mowerService.mowerStatus;
+  mowerStatus = this.mowerService.mowerStatus$;
   id: string;
 
   constructor(

@@ -1,19 +1,19 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable, OnDestroy, OnInit } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
 import { AuthService } from '../auth/auth.service';
 import { Mower, MowerStatus } from './mower.model';
 import { Token } from '../auth/token.model';
-import { startWith, switchMap, tap } from 'rxjs/operators';
+import { startWith, switchMap } from 'rxjs/operators';
 import { BehaviorSubject, interval, Subscription } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MowerService implements OnInit, OnDestroy {
-  private _mowers = new BehaviorSubject<Mower[]>([]);
-  private _mowerStatus = new BehaviorSubject<MowerStatus>(null);
+export class MowerService implements OnDestroy {
+  private mowers$ = new BehaviorSubject<Mower[]>([]);
+  private mowerStatus$ = new BehaviorSubject<MowerStatus>(null);
 
   interval: Subscription;
 
@@ -27,12 +27,9 @@ export class MowerService implements OnInit, OnDestroy {
         switchMap(() => this.loadMowers())
       )
       .subscribe((mowers: Mower[]) => {
-        this._mowers.next(mowers);
+        this.mowers$.next(mowers);
         mowers.forEach(mower => this.loadMowerStatus(mower.id));
       });
-  }
-
-  ngOnInit() {
   }
 
   ngOnDestroy() {
@@ -40,11 +37,7 @@ export class MowerService implements OnInit, OnDestroy {
   }
 
   get mowersObservable() {
-    return this._mowers.asObservable();
-  }
-
-  get mowerStatus() {
-    return this._mowerStatus;
+    return this.mowers$.asObservable();
   }
 
   private loadMowers() {
@@ -68,7 +61,7 @@ export class MowerService implements OnInit, OnDestroy {
           .append('Authorization-Provider', token.data.attributes.provider)
       }
     ).subscribe(
-      (status: MowerStatus) => this.mowerStatus.next(status)
+      (status: MowerStatus) => this.mowerStatus$.next(status)
     );
   }
 }
