@@ -1,31 +1,40 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" routerLink="/">
-    <img src="assets/images/logo.png" alt="" width="30" height="30" />
-  </a>
-  <div class="collapse navbar-collapse" id="navarNav">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/">Home</a>
-      </li>
-      <ng-template [ngIf]="isAuthenticated()">
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" routerLink="/">
+      <img src="assets/images/logo.png" alt="" width="30" height="30"/>
+    </a>
+    <div class="collapse navbar-collapse" id="navarNav">
+      <ul class="navbar-nav mr-auto">
         <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" routerLink="/mowers">Mowers</a>
+          <a class="nav-link" routerLink="/">Home</a>
         </li>
-      </ng-template>
-    </ul>
-    <ul class="navbar-nav my-s my-lg-0">
-      <ng-template [ngIf]="isAuthenticated()">
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" style="cursor: pointer;" (click)="onLogout()"
+        <ng-template [ngIf]="isAuthenticated()">
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" routerLink="/mowers">Mowers</a>
+          </li>
+        </ng-template>
+      </ul>
+      <ul class="navbar-nav my-s my-lg-0">
+        <ng-template [ngIf]="isAuthenticated()">
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" style="cursor: pointer;" (click)="onLogout()"
             >Log Out</a
-          >
-        </li>
-      </ng-template>
-      <ng-template [ngIf]="!isAuthenticated()">
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" routerLink="/login">Log In</a>
-        </li>
-      </ng-template>
-    </ul>
+            >
+          </li>
+        </ng-template>
+        <ng-template [ngIf]="!isAuthenticated()">
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" routerLink="/login">Log In</a>
+          </li>
+        </ng-template>
+      </ul>
+    </div>
+  </nav>
+  <div class="row">
+    <div class="col">
+      <small class="d-block mb-3 text-muted float-right">
+        &copy; tafli.io | v{{APP_VERSION}}
+      </small>
+    </div>
   </div>
-</nav>
+</header>

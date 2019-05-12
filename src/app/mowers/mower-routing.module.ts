@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AuthGuard } from './../auth/auth-guard.service';
+import { AuthGuard } from '../auth/auth-guard.service';
 import { MowerDetailComponent } from './mower-detail/mower-detail.component';
 import { MowerStartComponent } from './mower-start/mower-start.component';
 import { MowersComponent } from './mowers.component';
@@ -12,12 +12,12 @@ const routes: Routes = [
     component: MowersComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: '', component: MowerStartComponent, canActivate: [AuthGuard] },
       {
         path: ':id',
         component: MowerDetailComponent,
         canActivate: [AuthGuard]
-      }
+      },
+      { path: '', component: MowerStartComponent, canActivate: [AuthGuard] }
     ]
   }
 ];
